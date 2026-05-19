@@ -1,1 +1,67 @@
+# Week 1 Report — Scene Classification Project
 
+## Project
+Scene Classification using Deep Learning
+
+## Author
+Aimen Amanzhol
+
+## Week 1 Goals
+During the first week, the main goal was to prepare the environment and explore the dataset for the future deep learning model.
+
+## Completed Tasks
+
+### 1. Dataset Download
+The Intel Image Classification dataset was downloaded from Kaggle.
+
+Dataset link:
+https://www.kaggle.com/datasets/puneet6060/intel-image-classification
+
+### 2. GitHub Repository Setup
+A GitHub repository was created for storing project files, notebooks, and reports.
+
+### 3. Exploratory Data Analysis (EDA)
+Basic analysis of the dataset was completed:
+- Loaded training and testing datasets
+- Identified all scene categories
+- Counted the number of images in each class
+- Visualized class distribution using bar charts
+- Displayed sample images from every category
+
+### 4. Dataset Information
+The dataset contains 6 scene categories:
+- buildings
+- forest
+- glacier
+- mountain
+- sea
+- street
+
+Image size:
+150 × 150 pixels
+
+Total number of images:
+Approximately 25,000 images
+
+## Tools and Libraries
+The following Python libraries were used:
+- os
+- numpy
+- matplotlib
+- PIL (Pillow)
+
+## Results
+The dataset was successfully explored without errors.
+Visualizations helped understand:
+- class distribution
+- image structure
+- dataset organization
+
+The project environment is now ready for building a deep learning model in the next stage.
+
+## Next Steps
+For Week 2:
+- preprocess images
+- build a CNN model
+- train the model
+- evaluate accuracy
