@@ -1,84 +1,170 @@
+
 # Week 3 — Transfer Learning and Model Improvement
 
-## Completed This Week
+## What Was Done
 
-During Week 3, the baseline CNN model was improved using transfer learning and regularization techniques.
+During Week 3, the baseline CNN model from Week 2 was improved using transfer learning and regularization techniques.
 
-The following tasks were completed:
+Completed tasks:
 
-- Added data augmentation
-- Implemented Dropout layers
-- Used MobileNetV2 pretrained on ImageNet
-- Trained an improved deep learning model
-- Compared results with the Week 2 baseline CNN
-- Generated updated accuracy plots
+* Implemented Transfer Learning using MobileNetV2
+* Added data augmentation:
 
----
-
-## Model Improvements
-
-The original CNN model from Week 2 showed signs of overfitting.
-
-To improve generalization performance, the following methods were added:
-
-- Transfer Learning using MobileNetV2
-- Data augmentation:
-  - random flip
-  - random rotation
-  - random zoom
-- Dropout regularization
-
-The pretrained MobileNetV2 model was used as a feature extractor with frozen weights.
+  * RandomFlip
+  * RandomRotation
+  * RandomZoom
+* Added Dropout layers to reduce overfitting
+* Built a new training pipeline with pretrained feature extraction
+* Compared results with the baseline CNN model
+* Generated updated accuracy curves
 
 ---
 
-## Training Results
+# Dataset
 
-The improved model was trained for 5 epochs.
+| Property                 | Value                                             |
+| ------------------------ | ------------------------------------------------- |
+| Dataset                  | Intel Image Classification                        |
+| Total images             | ~25,000                                           |
+| Classes                  | 6                                                 |
+| Categories               | buildings, forest, glacier, mountain, sea, street |
+| Image size               | 150×150                                           |
+| Train / Validation split | 80% / 20%                                         |
 
-Final results:
-
-| Metric | Result |
-|---|---|
-| Training Accuracy | ~85% |
-| Validation Accuracy | ~88% |
-
-The validation accuracy improved significantly compared to the Week 2 baseline model.
-
----
-
-## Comparison with Week 2
-
-| Model | Validation Accuracy |
-|---|---|
-| Baseline CNN (Week 2) | ~78–80% |
-| Transfer Learning Model (Week 3) | ~88% |
-
-Transfer learning improved both accuracy and model stability.
+Dataset source:
+[Intel Image Classification Dataset](https://www.kaggle.com/datasets/puneet6060/intel-image-classification?utm_source=chatgpt.com)
 
 ---
 
-## Challenges
+# Augmentation Applied
 
-Training required more computational resources and GPU time compared to the baseline CNN.
+The following augmentation techniques were added to improve generalization:
 
-It was also necessary to tune augmentation and dropout settings to reduce overfitting.
+* Random horizontal flip
+* Random rotation (±10%)
+* Random zoom
 
----
-
-## Important Files Updated
-
-- notebooks/week3-transfer-learning.ipynb
-- reports/week-03.md
-- README.md
+These methods helped reduce overfitting and improved validation performance.
 
 ---
 
-## Plan for Week 4
+# Model Architecture
 
-Next week, I plan to:
+Input: 150 × 150 × 3
 
-- perform final evaluation on the test set,
-- analyze prediction errors,
-- save final plots and results,
-- prepare the final report and presentation.
+```text id="arch"
+Image
+→ Data Augmentation
+→ Rescaling
+→ MobileNetV2 (pretrained on ImageNet)
+→ GlobalAveragePooling2D
+→ Dropout(0.3)
+→ Dense(128, ReLU)
+→ Dropout(0.3)
+→ Dense(6, Softmax)
+```
+
+Transfer learning was implemented using MobileNetV2 with frozen pretrained weights.
+
+---
+
+# Training Configuration
+
+| Parameter      | Value                           |
+| -------------- | ------------------------------- |
+| Image size     | 150×150                         |
+| Batch size     | 32                              |
+| Epochs         | 5                               |
+| Optimizer      | Adam                            |
+| Loss Function  | Sparse Categorical Crossentropy |
+| Regularization | Dropout(0.3)                    |
+| Device         | Google Colab GPU                |
+
+---
+
+# Results
+
+| Metric              | Value |
+| ------------------- | ----- |
+| Training Accuracy   | ~85%  |
+| Validation Accuracy | ~88%  |
+
+The transfer learning model significantly outperformed the baseline CNN from Week 2.
+
+---
+
+# Comparison: Week 2 vs Week 3
+
+| Feature             | Week 2 CNN | Week 3 Transfer Learning |
+| ------------------- | ---------- | ------------------------ |
+| Simple CNN          | ✓          | ✗                        |
+| MobileNetV2         | ✗          | ✓                        |
+| Data Augmentation   | ✗          | ✓                        |
+| Dropout             | ✗          | ✓                        |
+| Validation Accuracy | ~78–80%    | ~88%                     |
+
+The Week 3 model achieved better generalization and reduced overfitting.
+
+---
+
+# Analysis
+
+The baseline CNN from Week 2 showed overfitting because training accuracy became much higher than validation accuracy.
+
+After adding:
+
+* transfer learning,
+* augmentation,
+* dropout,
+
+the validation accuracy improved significantly and the training became more stable.
+
+The pretrained MobileNetV2 model extracted more meaningful visual features compared to the manually built CNN.
+
+---
+
+# Challenges
+
+Several challenges were encountered during training:
+
+* training required longer GPU runtime,
+* transfer learning architecture was more complex,
+* augmentation parameters needed tuning,
+* Google Colab memory and runtime limitations.
+
+---
+
+# Loss Curves
+
+Training and validation accuracy curves were generated to analyze learning behavior.
+
+The curves showed:
+
+* stable convergence,
+* reduced overfitting,
+* higher validation performance compared to Week 2.
+
+---
+
+# Important Improvements
+
+The following improvements were introduced compared to the baseline model:
+
+* pretrained CNN architecture,
+* data augmentation,
+* dropout regularization,
+* better validation accuracy,
+* improved generalization performance.
+
+---
+
+# Next Steps (Week 4)
+
+Planned tasks for the final week:
+
+* final evaluation on test data,
+* confusion matrix and classification report,
+* error analysis,
+* final report preparation,
+* presentation and project demo,
+* possible fine-tuning of MobileNetV2.
