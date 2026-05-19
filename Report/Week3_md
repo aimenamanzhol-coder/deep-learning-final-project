@@ -1,0 +1,84 @@
+# Week 3 — Transfer Learning and Model Improvement
+
+## Completed This Week
+
+During Week 3, the baseline CNN model was improved using transfer learning and regularization techniques.
+
+The following tasks were completed:
+
+- Added data augmentation
+- Implemented Dropout layers
+- Used MobileNetV2 pretrained on ImageNet
+- Trained an improved deep learning model
+- Compared results with the Week 2 baseline CNN
+- Generated updated accuracy plots
+
+---
+
+## Model Improvements
+
+The original CNN model from Week 2 showed signs of overfitting.
+
+To improve generalization performance, the following methods were added:
+
+- Transfer Learning using MobileNetV2
+- Data augmentation:
+  - random flip
+  - random rotation
+  - random zoom
+- Dropout regularization
+
+The pretrained MobileNetV2 model was used as a feature extractor with frozen weights.
+
+---
+
+## Training Results
+
+The improved model was trained for 5 epochs.
+
+Final results:
+
+| Metric | Result |
+|---|---|
+| Training Accuracy | ~85% |
+| Validation Accuracy | ~88% |
+
+The validation accuracy improved significantly compared to the Week 2 baseline model.
+
+---
+
+## Comparison with Week 2
+
+| Model | Validation Accuracy |
+|---|---|
+| Baseline CNN (Week 2) | ~78–80% |
+| Transfer Learning Model (Week 3) | ~88% |
+
+Transfer learning improved both accuracy and model stability.
+
+---
+
+## Challenges
+
+Training required more computational resources and GPU time compared to the baseline CNN.
+
+It was also necessary to tune augmentation and dropout settings to reduce overfitting.
+
+---
+
+## Important Files Updated
+
+- notebooks/week3-transfer-learning.ipynb
+- reports/week-03.md
+- README.md
+
+---
+
+## Plan for Week 4
+
+Next week, I plan to:
+
+- perform final evaluation on the test set,
+- analyze prediction errors,
+- save final plots and results,
+- prepare the final report and presentation.
