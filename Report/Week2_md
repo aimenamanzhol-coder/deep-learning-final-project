@@ -1,0 +1,131 @@
+# Week 2 — Baseline CNN Model and Training
+
+## Completed This Week
+
+During the second week, I focused on building and training the first deep learning model for the scene classification project.
+
+The following tasks were completed:
+
+* Connected Google Drive to Google Colab
+* Loaded and prepared the Intel Image Classification dataset
+* Split the dataset into training and validation subsets
+* Applied image preprocessing and normalization
+* Built a baseline Convolutional Neural Network (CNN)
+* Trained the model for 5 epochs
+* Evaluated model performance using validation accuracy
+* Generated accuracy plots for training visualization
+* Added classification metrics and confusion matrix evaluation
+
+---
+
+## Dataset Preparation
+
+The dataset contains 6 scene categories:
+
+* buildings
+* forest
+* glacier
+* mountain
+* sea
+* street
+
+Images were resized to 150×150 pixels and normalized to improve training stability.
+
+The training dataset was loaded from:
+
+```text id="ds1"
+/content/data/seg_train
+```
+
+Validation data was created using an 80/20 split from the training set.
+
+---
+
+## Baseline CNN Architecture
+
+A simple CNN baseline model was implemented using TensorFlow/Keras.
+
+Model structure:
+
+* Conv2D (32 filters)
+* MaxPooling2D
+* Conv2D (64 filters)
+* MaxPooling2D
+* Conv2D (128 filters)
+* MaxPooling2D
+* Flatten layer
+* Dense layer (128 units)
+* Output layer with Softmax activation
+
+The model was compiled with:
+
+* Optimizer: Adam
+* Loss function: Sparse Categorical Crossentropy
+* Metric: Accuracy
+
+---
+
+## Training Results
+
+The model was trained for 5 epochs.
+
+Final results:
+
+| Metric              | Result  |
+| ------------------- | ------- |
+| Training Accuracy   | ~92%    |
+| Validation Accuracy | ~78–80% |
+
+The model learned meaningful visual features from the dataset and achieved good baseline performance for scene classification.
+
+An accuracy graph was generated to visualize the learning process.
+
+---
+
+## Additional Evaluation
+
+Additional evaluation methods were added:
+
+* Classification Report
+* Confusion Matrix
+* Validation Accuracy Curves
+
+These metrics helped analyze model behavior across different scene classes.
+
+---
+
+## Problems and Challenges
+
+Some overfitting was observed during training because training accuracy became significantly higher than validation accuracy.
+
+Possible reasons:
+
+* limited model regularization,
+* relatively small CNN architecture,
+* no data augmentation yet.
+
+Training also required significant GPU time in Google Colab.
+
+---
+
+## Important Files Updated
+
+```text id="files2"
+notebooks/week2-cnn.ipynb
+reports/week-02.md
+README.md
+```
+
+---
+
+## Plan for Week 3
+
+Next week, I plan to improve the model using more advanced deep learning techniques:
+
+* Data augmentation
+* Dropout layers
+* Transfer learning (MobileNetV2 or pretrained CNN)
+* Better evaluation and error analysis
+* Hyperparameter tuning
+
+The goal is to improve validation accuracy and reduce overfitting.
