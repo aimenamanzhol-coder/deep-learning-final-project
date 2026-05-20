@@ -1,0 +1,131 @@
+# Week 4 Report — Final Evaluation & Results
+
+## What Was Done
+
+During Week 4, the final version of the deep learning model for scene classification was completed and evaluated.
+
+The dataset was loaded using TensorFlow image dataset utilities with train, validation, and test splits. Transfer learning with MobileNetV2 was used as the main architecture.
+
+Additional data augmentation techniques were applied to improve generalization and reduce overfitting:
+
+* Random horizontal flip
+* Random rotation
+* Random zoom
+
+The pretrained MobileNetV2 base model was frozen and used as a feature extractor. A custom classification head with dense and dropout layers was added for the final prediction task.
+
+The final model was trained for 5 epochs and evaluated on the test dataset.
+
+---
+
+# Dataset
+
+| Property          | Value                                             |
+| ----------------- | ------------------------------------------------- |
+| Dataset           | Intel Image Classification                        |
+| Classes           | 6                                                 |
+| Categories        | buildings, forest, glacier, mountain, sea, street |
+| Image size        | 150×150                                           |
+| Batch size        | 32                                                |
+| Train images      | 11,228                                            |
+| Validation images | 2,806                                             |
+| Test images       | 3,000                                             |
+
+Dataset source:
+[Intel Image Classification Dataset (Kaggle)](https://www.kaggle.com/datasets/puneet6060/intel-image-classification?utm_source=chatgpt.com)
+
+---
+
+# Model Architecture
+
+```text
+Input Image (150×150×3)
+→ Data Augmentation
+→ Rescaling Layer
+→ MobileNetV2 (pretrained on ImageNet)
+→ GlobalAveragePooling2D
+→ Dropout(0.3)
+→ Dense(128, ReLU)
+→ Dropout(0.3)
+→ Dense(6, Softmax)
+```
+
+---
+
+# Training Configuration
+
+| Parameter          | Value                         |
+| ------------------ | ----------------------------- |
+| Optimizer          | Adam                          |
+| Loss Function      | SparseCategoricalCrossentropy |
+| Epochs             | 5                             |
+| Batch Size         | 32                            |
+| Transfer Learning  | Yes                           |
+| Pretrained Weights | ImageNet                      |
+| Framework          | TensorFlow / Keras            |
+
+---
+
+# Final Results
+
+| Metric                    | Value  |
+| ------------------------- | ------ |
+| Final Validation Accuracy | 0.8906 |
+| Final Test Accuracy       | 0.8937 |
+| Final Test Loss           | 0.2918 |
+
+The model achieved approximately **89% test accuracy**, showing strong performance on scene classification.
+
+---
+
+# Training Analysis
+
+The training and validation accuracy curves showed stable learning behavior during training.
+
+The model improved significantly compared to the baseline CNN from Week 2. Transfer learning with MobileNetV2 helped extract more powerful visual features from the images.
+
+Dropout layers and data augmentation helped reduce overfitting and improved model generalization.
+
+The validation accuracy remained close to the training accuracy, indicating that the model generalized well to unseen data.
+
+---
+
+# Comparison With Previous Weeks
+
+| Week   | Model                         | Result                       |
+| ------ | ----------------------------- | ---------------------------- |
+| Week 2 | Basic CNN                     | Baseline model               |
+| Week 3 | MobileNetV2 Transfer Learning | Improved validation accuracy |
+| Week 4 | Final MobileNetV2 Model       | ~89% test accuracy           |
+
+---
+
+# Challenges
+
+Some scene categories such as glacier and mountain contained visually similar images, which sometimes caused classification confusion.
+
+Training time was also relatively long because transfer learning models require more computational resources.
+
+Another challenge was balancing model complexity and overfitting prevention.
+
+---
+
+# Conclusion
+
+The final deep learning model successfully classified natural scene images into six categories using transfer learning.
+
+Using MobileNetV2 with data augmentation and dropout significantly improved performance compared to the baseline CNN model.
+
+The project demonstrated the effectiveness of transfer learning for image classification tasks and provided practical experience with preprocessing, training, evaluation, and deep learning experimentation.
+
+---
+
+# Next Steps / Future Improvements
+
+Possible future improvements include:
+
+* Fine-tuning MobileNetV2 layers
+* Testing EfficientNet or ResNet architectures
+* Adding confusion matrix visualization
+* Building a Streamlit web application for scene prediction
+* Increasing training epochs and hyperparameter tuning
