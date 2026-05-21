@@ -1,0 +1,3 @@
+Amanzhol Aimen
+Scene Image Classification using Deep Learning
+90%
