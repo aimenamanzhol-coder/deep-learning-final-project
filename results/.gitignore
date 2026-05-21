@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Dataset files
+data/
+*.zip
+
+# Model weights
+*.h5
+*.keras
+*.ckpt
+
+# Environment files
+.env
+.venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
